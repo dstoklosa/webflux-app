@@ -50,10 +50,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-webflux')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    compile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
     testCompile('io.projectreactor:reactor-test')
     testCompile group: 'org.spockframework', name: 'spock-core', version: spock
     testCompile group: 'org.spockframework', name: 'spock-spring', version: spock
+
 }
