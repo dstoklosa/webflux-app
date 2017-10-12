@@ -14,3 +14,8 @@ data class ProjectLead(
     val lastName: String
 )
 
+data class ProjectPartner(
+    val id: UUID,
+    val name: String
+)
+
