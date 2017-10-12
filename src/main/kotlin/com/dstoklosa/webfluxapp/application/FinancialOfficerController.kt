@@ -1,18 +1,18 @@
 package com.dstoklosa.webfluxapp.application
 
-import com.dstoklosa.webfluxapp.domain.FinancialOfficer
-import com.dstoklosa.webfluxapp.domain.FinancialOfficerRepository
+import com.dstoklosa.webfluxapp.domain.team.FinancialOfficer
+import com.dstoklosa.webfluxapp.domain.team.FinancialOfficerRepository
 import org.jetbrains.annotations.NotNull
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Mono
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/")
-class ProjectTeamController(
+class FinancialOfficerController(
     private val financialOfficerRepository: FinancialOfficerRepository
 ) {
 
@@ -22,10 +22,11 @@ class ProjectTeamController(
         @Valid
         @NotNull
         officer: FinancialOfficer
-    ): Mono<FinancialOfficer>? {
-        return financialOfficerRepository.save(officer)
-    }
+    ) = financialOfficerRepository.save(officer)
 
+
+    @GetMapping("/financial-officers")
+    fun getFinancialOfficers() = financialOfficerRepository.findAll()
 }
 
 
