@@ -1,6 +1,5 @@
 package com.dstoklosa.webfluxapp.integration
 
-import com.dstoklosa.webfluxapp.domain.team.ProjectLead
 import com.dstoklosa.webfluxapp.domain.team.ProjectPartner
 import reactor.core.publisher.Mono
 
