@@ -1,7 +1,6 @@
 package com.dstoklosa.webfluxapp.integration
 
 import com.dstoklosa.webfluxapp.domain.project.Project
-import com.dstoklosa.webfluxapp.domain.team.ProjectLead
 import reactor.core.publisher.Mono
 import spock.lang.Ignore
 
@@ -32,12 +31,12 @@ class ProjectControllerSpec extends AbstractIntegrationSpec {
         when:
         def result = webTestClient
                 .get()
-                .uri("/project-leads")
+                .uri("/projects")
                 .exchange()
         then:
         result.expectStatus()
                 .is2xxSuccessful()
-                .expectBodyList(ProjectLead)
+                .expectBodyList(Project)
                 .contains(project1, project2)
     }
 
@@ -45,7 +44,7 @@ class ProjectControllerSpec extends AbstractIntegrationSpec {
     private createProject(def project) {
         return this.webTestClient
                 .post()
-                .uri("/project")
+                .uri("/projects")
                 .body(Mono.just(project), Project)
                 .exchange()
     }
