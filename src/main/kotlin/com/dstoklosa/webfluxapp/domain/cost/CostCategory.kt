@@ -4,5 +4,5 @@ import java.util.UUID
 
 data class CostCategory(
     val id: UUID,
-    val name: String
+    val type: String
 )
