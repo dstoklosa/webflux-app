@@ -1,30 +1,30 @@
 package com.dstoklosa.webfluxapp.integration
 
 import com.dstoklosa.webfluxapp.domain.project.Project
+import com.dstoklosa.webfluxapp.helper.ProjectBuilder
 import reactor.core.publisher.Mono
 import spock.lang.Ignore
-
-import static java.util.UUID.randomUUID
 
 class ProjectControllerSpec extends AbstractIntegrationSpec {
 
 
-    def "should create a project"() {
+    def "should create a project with basic data"() {
         given:
-        def project = new Project(randomUUID())
+        def project = givenProject()
 
         when:
         def result = createProject(project)
 
         then:
         result.expectStatus().is2xxSuccessful()
+        result.expectBodyList(Project).contains(project)
     }
 
     @Ignore
     def "should return list of project leads"() {
         given:
-        def project1  = new Project(randomUUID())
-        def project2  = new Project(randomUUID())
+        def project1  = givenProject()
+        def project2  = givenProject()
         createProject(project1)
         createProject(project2)
 
@@ -47,6 +47,11 @@ class ProjectControllerSpec extends AbstractIntegrationSpec {
                 .uri("/projects")
                 .body(Mono.just(project), Project)
                 .exchange()
+    }
+
+
+    private Project givenProject() {
+        ProjectBuilder.newInstance().build()
     }
 
 }
